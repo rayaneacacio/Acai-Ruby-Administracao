@@ -28,7 +28,11 @@ export const Container = styled.div`
       grid-template-columns: 1fr 1fr 1fr;
       gap: 0 3rem;
       margin-top: 3rem;
-      animation: animateToRight 0.5s forwards;
+      position: relative;
+
+      > *:not(.buttonSave) {
+        animation: animateToRight 0.5s forwards;
+      }
     }
   }
 `;

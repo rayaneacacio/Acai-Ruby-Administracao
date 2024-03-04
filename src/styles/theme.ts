@@ -6,6 +6,7 @@ export default {
     YELLOW: "#fff91d",
     PURPLE: "#550155",
     PURPLE_22: "#620962;",
+    PURPLE_3: "#b39bb5",
   },
   FONTS: {
     ROBOTO: "'Roboto', sans-serif",

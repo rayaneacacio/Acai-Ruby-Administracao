@@ -1,15 +1,15 @@
-import { ReactElement, useState } from "react";
+import { ReactElement, useState, ReactDOM } from "react";
 import { Container, Nav } from "./style";
 import { Header } from "../../components/Header";
 import { Bebidas } from "../Bebidas";
-import { Açaí } from "../Acai";
+import { Acai } from "../Acai";
 import { SvgFoodMenu } from "../../assets/svgs/food-menu";
 
 export function Home(): ReactElement {
-  const [ contentMain, setContentMain ] = useState<ReactElement>(Bebidas);
+  const [ contentMain, setContentMain ] = useState<string>("Açaí");
   const contentElement: { [key: string]: ReactElement } = {
     "Bebidas": <Bebidas />,
-    "Açaí": <Açaí />
+    "Açaí": <Acai />
   }
 
   function handleContentMain(button: HTMLButtonElement): void {
@@ -19,7 +19,7 @@ export function Home(): ReactElement {
     });
 
     button.classList.add("buttonOnFocus");
-    setContentMain(contentElement[button.innerText]);
+    setContentMain(button.innerText);
   }
 
   return (
@@ -43,7 +43,7 @@ export function Home(): ReactElement {
         </Nav>
 
         <main>
-          { contentMain }
+          { contentElement[contentMain] }
         </main>
       </div>
     </Container>
