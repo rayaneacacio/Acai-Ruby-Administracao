@@ -13,20 +13,70 @@ export const Container = styled.div`
     width: calc(100% - 21rem);
     padding: 4rem;
     padding-right: 15rem;
-    animation: animateToRight 0.5s forwards;
+    overflow-y: auto;
 
     > h2 {
       color: ${({ theme }) => theme.COLORS.GRAY};
-      width: 9.5rem;
+      /* width: 9.5rem; */
       font-size: 2.2rem;
       margin-bottom: 3rem;
-      border-bottom: 2px solid ${({ theme }) => theme.COLORS.PURPLE_22};
+      /* border-bottom: 2px solid ${({ theme }) => theme.COLORS.PURPLE_22}; */
     }
 
     > div {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 2rem 3rem;
+      gap: 0 3rem;
+      margin-top: 3rem;
+      animation: animateToRight 0.5s forwards;
     }
+  }
+`;
+
+
+export const Nav = styled.nav`
+  background-color:  ${({ theme }) => theme.COLORS.PURPLE};
+  color:  ${({ theme }) => theme.COLORS.WHITE};
+  width: 21rem;
+  height: 95%;
+  border-radius: 2rem;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  
+  > div {
+    background-color:  ${({ theme }) => theme.COLORS.PURPLE_22};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem 2rem 1rem 1rem;
+    margin: 3rem 0 0;
+
+    > div {
+      background-color:  ${({ theme }) => theme.COLORS.WHITE};
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h2 {
+      font-weight: 400;
+    }
+  }
+
+  button {
+    color:  ${({ theme }) => theme.COLORS.WHITE};
+    font-size: 1.6rem;
+    font-weight: 500;
+    height: 5rem;
+  }
+
+  button:hover, button:focus, button:focus-visible, .buttonOnFocus {
+    background-color:  ${({ theme }) => theme.COLORS.WHITE};
+    color:  ${({ theme }) => theme.COLORS.PURPLE};
   }
 `;

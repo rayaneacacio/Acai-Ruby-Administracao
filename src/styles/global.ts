@@ -26,12 +26,12 @@ export default createGlobalStyle`
 
     &::-webkit-scrollbar {
       background: transparent;
-      width: 5px;
+      width: 8px;
     }
 
     &::-webkit-scrollbar-thumb {
       background: ${({ theme }) => theme.COLORS.PURPLE_22};
-      border-radius: 2px;
+      border-radius: 5px;
     }
   }
 
