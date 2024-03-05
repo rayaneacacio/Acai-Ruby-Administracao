@@ -5,6 +5,7 @@ import { Container } from "./style";
 import { useAcai } from "../../hooks/acai";
 import { ButtonSave } from "../../components/ButtonSave";
 import { ComponentDraft } from "../../components/ComponentDraft";
+import { Modal } from "../../components/Modal";
 
 export function Acai(): ReactElement {
   const { createAcaiComponents } = useAcai();
@@ -79,6 +80,18 @@ export function Acai(): ReactElement {
     createAcaiComponents(complementosList, "complementos");
     createAcaiComponents(coberturaList, "coberturas");
     createAcaiComponents(extrasList, "extras");
+
+    if(cremesList.length!=0 || complementosList.length!=0 ||coberturaList.length!=0 || extrasList.length!=0) {
+      (document.querySelector(".modalCreatedSuccessfully")! as HTMLDialogElement).style.display = "block";
+      handleClearStates();
+    }
+  }
+
+  function handleClearStates(): void {
+    setCremesList([]);
+    setComplementosList([]);
+    setCoberturasList([]);
+    setExtrasList([]);
   }
 
   return (
@@ -153,7 +166,8 @@ export function Acai(): ReactElement {
             }
           </div>
         </div>
-        
+
+        <Modal className="modalCreatedSuccessfully" content="salvo com sucesso :)" />
       </Container>
     </>
   )
