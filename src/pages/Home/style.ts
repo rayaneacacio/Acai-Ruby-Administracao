@@ -30,7 +30,7 @@ export const Container = styled.div`
       margin-top: 3rem;
       position: relative;
 
-      > *:not(.buttonSave) {
+      > *:not(.buttonSave, dialog) {
         animation: animateToRight 0.5s forwards;
       }
     }

@@ -1,37 +1,55 @@
 import { ReactElement, createContext, useContext } from "react";
 import { api } from "../services/api";
 
-type AcaiType = {
-  createAcaiComponents: (newCreme: string[]) => void
+interface AcaiContextType {
+  createAcaiComponents: (newComponents: string[], category: string) => void;
+  findAllAcaiComponents: (category: string) => Promise<IComponents[] | undefined>;
 }
 
-const initialValue = {
-  createAcaiComponents: () => {}
+const initialValue: AcaiContextType = {
+  createAcaiComponents: () => {},
+  findAllAcaiComponents: async() => [{ id: 0, name: "", type: "" }],
 }
 
-export const AcaiContext = createContext<AcaiType>(initialValue);
+interface IComponents {
+  id: number,
+  name: string,
+  type: string
+}
+
+export const AcaiContext = createContext<AcaiContextType>(initialValue);
 
 function AcaiProviders(props: { children: ReactElement }) {
-  async function createAcaiComponents(newCremes: string[]): Promise<void> {
-    if(!newCremes || newCremes.length == 0) {
+  async function createAcaiComponents(newComponents: string[], category: string): Promise<void> {
+    if(!newComponents || newComponents.length == 0) {
       return;
     }
 
     try {
-      await api.post("/acai_components/", { components: newCremes, type: "creme" });
+      await api.post("/acai_components/", { components: newComponents, type: category });
+
     } catch(error) { 
-      console.error(`erro ao criar componente creme ${error}`);
+      console.error(`erro ao criar componente: ${error}`);
     }
   }
 
-  return <AcaiContext.Provider value={{ createAcaiComponents }}>
+  async function findAllAcaiComponents(category: string): Promise<IComponents[] | undefined> {
+    try {
+      const response = await api.post("/acai_components/index", { type: category });
+      return response.data;
+
+    } catch(error) {
+      console.error(`erro ao buscar componentes: ${error}`);
+    }
+  }
+
+  return <AcaiContext.Provider value={{ createAcaiComponents, findAllAcaiComponents }}>
     { props.children }
   </AcaiContext.Provider>
 }
 
 function useAcai() {
-  const context = useContext(AcaiContext);
-  return context;
+  return useContext(AcaiContext);
 }
 
 export { AcaiProviders, useAcai };
