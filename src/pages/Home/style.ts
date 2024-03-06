@@ -13,9 +13,9 @@ export const Container = styled.div`
     width: calc(100% - 21rem);
     padding: 4rem;
     padding-right: 15rem;
-    overflow-y: auto;
+    overflow-y: scroll;
 
-    > div > h2 {
+    > div > h1 {
       color: ${({ theme }) => theme.COLORS.GRAY};
       font-size: 2.2rem;
       margin-bottom: 3rem;
@@ -23,9 +23,8 @@ export const Container = styled.div`
 
     > div > div {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
       gap: 0 3rem;
-      margin-top: 3rem;
       position: relative;
 
       > *:not(.buttonSave, dialog) {

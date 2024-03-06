@@ -1,25 +1,35 @@
-import { ReactElement, createContext, useContext } from "react";
+import { ReactElement, createContext, useContext, useState } from "react";
 import { api } from "../services/api";
 
 interface AcaiContextType {
   createAcaiComponents: (newComponents: string[], category: string) => void;
-  findAllAcaiComponents: (category: string) => Promise<IComponents[] | undefined>;
+  findAllAcaiComponents: (signal: AbortSignal) => void;
+  allComponentesDatabase: IAllComponents;
 }
 
 const initialValue: AcaiContextType = {
   createAcaiComponents: () => {},
-  findAllAcaiComponents: async() => [{ id: 0, name: "", type: "" }],
+  findAllAcaiComponents: () => {},
+  allComponentesDatabase: { cremes: [], complementos: [], coberturas: [], extras: [] },
 }
 
-interface IComponents {
-  id: number,
-  name: string,
-  type: string
+interface IAllComponents {
+  cremes: [],
+  complementos: [],
+  coberturas: [],
+  extras: []
 }
 
 export const AcaiContext = createContext<AcaiContextType>(initialValue);
 
 function AcaiProviders(props: { children: ReactElement }) {
+  const [ allComponentesDatabase, setAllComponentesDatabase ] = useState<IAllComponents>({ 
+    cremes: [], 
+    complementos: [], 
+    coberturas: [], 
+    extras: [] 
+  });
+
   async function createAcaiComponents(newComponents: string[], category: string): Promise<void> {
     if(!newComponents || newComponents.length == 0) {
       return;
@@ -33,17 +43,26 @@ function AcaiProviders(props: { children: ReactElement }) {
     }
   }
 
-  async function findAllAcaiComponents(category: string): Promise<IComponents[] | undefined> {
+  async function findAllAcaiComponents(signal: AbortSignal): Promise<void> {
     try {
-      const response = await api.post("/acai_components/index", { type: category });
-      return response.data;
+      const responseGetCremes = await api.get("/acai_components/index?type=cremes", { signal });
+      const responseGetComplementos = await api.get("/acai_components/index?type=complementos", { signal });
+      const responseGetCoberturas = await api.get("/acai_components/index?type=coberturas", { signal });
+      const responseGetExtras = await api.get("/acai_components/index?type=extras", { signal });
+
+      setAllComponentesDatabase({
+        cremes: responseGetCremes.data,
+        complementos: responseGetComplementos.data,
+        coberturas: responseGetCoberturas.data,
+        extras: responseGetExtras.data
+      });
 
     } catch(error) {
       console.error(`erro ao buscar componentes: ${error}`);
     }
   }
 
-  return <AcaiContext.Provider value={{ createAcaiComponents, findAllAcaiComponents }}>
+  return <AcaiContext.Provider value={{ createAcaiComponents, findAllAcaiComponents, allComponentesDatabase }}>
     { props.children }
   </AcaiContext.Provider>
 }

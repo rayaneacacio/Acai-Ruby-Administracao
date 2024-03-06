@@ -1,15 +1,15 @@
 import { ReactElement, useState } from "react";
 import { Container, Nav } from "./style";
 import { Header } from "../../components/Header";
-import { Bebidas } from "../Bebidas";
-import { Acai } from "../Acai";
+import { Adicionar } from "../Adicionar";
 import { SvgFoodMenu } from "../../assets/svgs/food-menu";
+import { Disponíveis } from "../Disponíveis";
 
 export function Home(): ReactElement {
-  const [ contentMain, setContentMain ] = useState<string>("Açaí");
+  const [ contentMain, setContentMain ] = useState<string>("Disponíveis");
   const contentElement: { [key: string]: ReactElement } = {
-    "Bebidas": <Bebidas />,
-    "Açaí": <Acai />
+    "Adicionar": <Adicionar />,
+    "Disponíveis": <Disponíveis />
   }
 
   function handleContentMain(button: HTMLButtonElement): void {
@@ -38,8 +38,9 @@ export function Home(): ReactElement {
             <h2>Cardápio</h2>
           </div>
       
-          <button onClick={(event) => handleContentMain(event.currentTarget) }>Açaí</button>
-          <button onClick={(event) => handleContentMain(event.currentTarget) }>Bebidas</button>
+          <button onClick={(event) => handleContentMain(event.currentTarget) }>Disponíveis</button>
+          <button onClick={(event) => handleContentMain(event.currentTarget) }>Adicionar</button>
+
         </Nav>
 
         <main>

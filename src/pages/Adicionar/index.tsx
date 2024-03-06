@@ -7,7 +7,7 @@ import { ButtonSave } from "../../components/ButtonSave";
 import { ComponentDraft } from "../../components/ComponentDraft";
 import { Modal } from "../../components/Modal";
 
-export function Acai(): ReactElement {
+export function Adicionar(): ReactElement {
   const { createAcaiComponents } = useAcai();
 
   const [ creme, setCreme ] = useState<string>("");
@@ -96,22 +96,20 @@ export function Acai(): ReactElement {
 
   return (
     <Container>
-      <h2>Componentes Disponíveis</h2>
-      <h2>Adicionar</h2>
+      <h1>Adicionar</h1>
 
       <div>
         <ButtonSave onClick={ handleCreateAcaiComponents } />
         <div>
-          <div className="divCreateComponents">
+          <div className="divAdicionar">
             <Input name="Cremes" placeholder="ex: cupuaçu" onChange={(event) => setCreme(event.target.value)} />
             <Button onClick={() => hanldeAddComponent(creme, "cremes") } />
           </div>
 
           <div>
             {
-              cremesList &&
-              cremesList.map((component: string, index: number) => (
-                <ComponentDraft key={ index } name={ component } onClick={() => handleRemoveComponent(component, "cremes") }/>
+              cremesList?.map((acaiComponent: string, index: number) => (
+                <ComponentDraft key={ index } name={ acaiComponent } onClick={() => handleRemoveComponent(acaiComponent, "cremes") }/>
               ))
             }
           </div>
@@ -119,32 +117,30 @@ export function Acai(): ReactElement {
         
         
         <div>
-          <div className="divCreateComponents">
+          <div className="divAdicionar">
             <Input name="Complementos" placeholder="ex: leite em pó" onChange={(event) => setComplemento(event.target.value)} />
             <Button onClick={() => hanldeAddComponent(complemento, "complementos") } />
           </div>
 
           <div>
             {
-              complementosList &&
-              complementosList.map((component: string, index: number) => (
-                <ComponentDraft key={ index } name={ component } onClick={() => handleRemoveComponent(component, "complementos") }/>
+              complementosList?.map((acaiComponent: string, index: number) => (
+                <ComponentDraft key={ index } name={ acaiComponent } onClick={() => handleRemoveComponent(acaiComponent, "complementos") }/>
               ))
             }
           </div>
         </div>
 
         <div>
-          <div className="divCreateComponents">
+          <div className="divAdicionar">
             <Input name="Coberturas" placeholder="ex: leite condensado" onChange={(event) => setCobertura(event.target.value)} />
             <Button onClick={() => hanldeAddComponent(cobertura, "coberturas") } />
           </div>
 
           <div>
             {
-              coberturaList &&
-              coberturaList.map((component: string, index: number) => (
-                <ComponentDraft key={ index } name={ component } onClick={() => handleRemoveComponent(component, "coberturas") }/>
+              coberturaList?.map((acaiComponent: string, index: number) => (
+                <ComponentDraft key={ index } name={ acaiComponent } onClick={() => handleRemoveComponent(acaiComponent, "coberturas") }/>
               ))
             }
           </div>
@@ -152,16 +148,15 @@ export function Acai(): ReactElement {
         </div>
 
         <div>
-          <div className="divCreateComponents">
+          <div className="divAdicionar">
             <Input name="Extras" placeholder="ex: bis" onChange={(event) => setExtra(event.target.value)} />
             <Button onClick={() => hanldeAddComponent(extra, "extras") } />
           </div>
 
           <div>
             {
-              extrasList &&
-              extrasList.map((component: string, index: number) => (
-                <ComponentDraft key={ index } name={ component } onClick={() => handleRemoveComponent(component, "extras") }/>
+              extrasList?.map((acaiComponent: string, index: number) => (
+                <ComponentDraft key={ index } name={ acaiComponent } onClick={() => handleRemoveComponent(acaiComponent, "extras") }/>
               ))
             }
           </div>

@@ -1,15 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  > h2:last-of-type {
-    margin-top: 4rem;
-  }
-
-  > div {
-    grid-template-columns: 1fr 1fr 1fr 1fr !important;
-  }
-
-  .divCreateComponents {
+  .divAdicionar {
     display: flex;
     align-items: flex-end;
     gap: 1rem;
