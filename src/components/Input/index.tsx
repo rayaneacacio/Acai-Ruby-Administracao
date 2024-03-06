@@ -6,7 +6,8 @@ import { SvgUpload } from "../../assets/svgs/upload";
 export function Input(props: {
   name: string, 
   placeholder?: string, 
-  type?: string, 
+  type?: string,
+  value?: string,
   onChange?: (any: any) => void
 }): ReactElement {
   return (
@@ -31,7 +32,14 @@ export function Input(props: {
 
       { 
         !props.type &&
-        <input id={`input${props.name}`} type="text" placeholder={ props.placeholder } autoComplete="off" onChange={ props.onChange }></input>
+        <input 
+          id={`input${props.name}`} 
+          type="text" 
+          placeholder={ props.placeholder } 
+          autoComplete="off" 
+          value={ props.value }
+          readOnly={ props.value ? true : false } 
+          onChange={ props.onChange } />
       }
 
       {

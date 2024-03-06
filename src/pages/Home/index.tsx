@@ -4,12 +4,14 @@ import { Header } from "../../components/Header";
 import { Adicionar } from "../Adicionar";
 import { SvgFoodMenu } from "../../assets/svgs/food-menu";
 import { Disponíveis } from "../Disponíveis";
+import { Tamanhos } from "../Tamanhos";
 
 export function Home(): ReactElement {
   const [ contentMain, setContentMain ] = useState<string>("Disponíveis");
   const contentElement: { [key: string]: ReactElement } = {
     "Adicionar": <Adicionar />,
-    "Disponíveis": <Disponíveis />
+    "Disponíveis": <Disponíveis />,
+    "Tamanhos": <Tamanhos />
   }
 
   function handleContentMain(button: HTMLButtonElement): void {
@@ -40,6 +42,7 @@ export function Home(): ReactElement {
       
           <button onClick={(event) => handleContentMain(event.currentTarget) }>Disponíveis</button>
           <button onClick={(event) => handleContentMain(event.currentTarget) }>Adicionar</button>
+          <button onClick={(event) => handleContentMain(event.currentTarget) }>Tamanhos</button>
 
         </Nav>
 
