@@ -6,7 +6,7 @@ import { ButtonSave } from "../../components/ButtonSave";
 import { useAcaiSizes } from "../../hooks/acaiSizes";
 
 export function Tamanhos(): ReactElement {
-  const { createSizes, findAllSizes, allSizesDatabase } = useAcaiSizes();
+  const { createSizes, findAllSizes } = useAcaiSizes();
 
   const [ size, setSize ] = useState<string>("");
   const [ price, setPrice ] = useState<string>("");
