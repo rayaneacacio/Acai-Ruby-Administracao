@@ -15,15 +15,13 @@ export const Container = styled.div`
     padding-right: 15rem;
     overflow-y: auto;
 
-    > h2 {
+    > div > h2 {
       color: ${({ theme }) => theme.COLORS.GRAY};
-      /* width: 9.5rem; */
       font-size: 2.2rem;
       margin-bottom: 3rem;
-      /* border-bottom: 2px solid ${({ theme }) => theme.COLORS.PURPLE_22}; */
     }
 
-    > div {
+    > div > div {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 0 3rem;

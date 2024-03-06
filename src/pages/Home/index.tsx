@@ -1,4 +1,4 @@
-import { ReactElement, useState, ReactDOM } from "react";
+import { ReactElement, useState } from "react";
 import { Container, Nav } from "./style";
 import { Header } from "../../components/Header";
 import { Bebidas } from "../Bebidas";

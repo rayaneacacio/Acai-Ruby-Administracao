@@ -95,14 +95,14 @@ export function Acai(): ReactElement {
   }
 
   return (
-    <>
+    <Container>
       <h2>Componentes Disponíveis</h2>
       <h2>Adicionar</h2>
 
-      <Container>
+      <div>
         <ButtonSave onClick={ handleCreateAcaiComponents } />
         <div>
-          <div>
+          <div className="divCreateComponents">
             <Input name="Cremes" placeholder="ex: cupuaçu" onChange={(event) => setCreme(event.target.value)} />
             <Button onClick={() => hanldeAddComponent(creme, "cremes") } />
           </div>
@@ -119,7 +119,7 @@ export function Acai(): ReactElement {
         
         
         <div>
-          <div>
+          <div className="divCreateComponents">
             <Input name="Complementos" placeholder="ex: leite em pó" onChange={(event) => setComplemento(event.target.value)} />
             <Button onClick={() => hanldeAddComponent(complemento, "complementos") } />
           </div>
@@ -135,7 +135,7 @@ export function Acai(): ReactElement {
         </div>
 
         <div>
-          <div>
+          <div className="divCreateComponents">
             <Input name="Coberturas" placeholder="ex: leite condensado" onChange={(event) => setCobertura(event.target.value)} />
             <Button onClick={() => hanldeAddComponent(cobertura, "coberturas") } />
           </div>
@@ -152,7 +152,7 @@ export function Acai(): ReactElement {
         </div>
 
         <div>
-          <div>
+          <div className="divCreateComponents">
             <Input name="Extras" placeholder="ex: bis" onChange={(event) => setExtra(event.target.value)} />
             <Button onClick={() => hanldeAddComponent(extra, "extras") } />
           </div>
@@ -168,7 +168,7 @@ export function Acai(): ReactElement {
         </div>
 
         <Modal className="modalCreatedSuccessfully" content="salvo com sucesso :)" />
-      </Container>
-    </>
+      </div>
+    </Container>
   )
 }

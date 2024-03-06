@@ -1,9 +1,15 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  grid-template-columns: 1fr 1fr 1fr 1fr !important;
+  > h2:last-of-type {
+    margin-top: 4rem;
+  }
 
-  > div > div:first-of-type {
+  > div {
+    grid-template-columns: 1fr 1fr 1fr 1fr !important;
+  }
+
+  .divCreateComponents {
     display: flex;
     align-items: flex-end;
     gap: 1rem;
