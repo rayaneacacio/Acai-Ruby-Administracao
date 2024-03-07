@@ -15,4 +15,8 @@ export const Container = styled.div`
       border-radius: 8px;
     }
   }
+
+  .divIsLoading {
+    margin-top: 7rem;
+  }
 `;

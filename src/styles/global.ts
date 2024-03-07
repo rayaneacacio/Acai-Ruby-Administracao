@@ -87,11 +87,11 @@ export default createGlobalStyle`
   }
 
   .divIsLoading {
+    width: 100%;
+    height: calc(100% - 25rem);
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
-    inset: 0;
   }
 
   .spin {

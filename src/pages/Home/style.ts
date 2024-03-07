@@ -21,6 +21,10 @@ export const Container = styled.div`
       margin-bottom: 3rem;
     }
 
+    > div {
+      height: 100%;
+    }
+
     > div > div:not(.divIsLoading) {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr;
