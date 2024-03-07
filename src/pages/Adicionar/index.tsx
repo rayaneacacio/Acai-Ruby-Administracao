@@ -5,7 +5,6 @@ import { Container } from "./style";
 import { useAcai } from "../../hooks/acai";
 import { ButtonSave } from "../../components/ButtonSave";
 import { ComponentDraft } from "../../components/ComponentDraft";
-import { Modal } from "../../components/Modal";
 
 export function Adicionar(): ReactElement {
   const { createAcaiComponents } = useAcai();
@@ -161,8 +160,6 @@ export function Adicionar(): ReactElement {
             }
           </div>
         </div>
-
-        <Modal className="modalCreatedSuccessfully" content="salvo com sucesso :)" />
       </div>
     </Container>
   )

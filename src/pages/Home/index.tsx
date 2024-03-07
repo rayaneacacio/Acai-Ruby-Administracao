@@ -5,6 +5,7 @@ import { Adicionar } from "../Adicionar";
 import { SvgFoodMenu } from "../../assets/svgs/food-menu";
 import { Disponíveis } from "../Disponíveis";
 import { Tamanhos } from "../Tamanhos";
+import { ModalSuccessfully } from "../../components/ModalSuccessfully";
 
 export function Home(): ReactElement {
   const [ contentMain, setContentMain ] = useState<string>("Disponíveis");
@@ -50,6 +51,8 @@ export function Home(): ReactElement {
           { contentElement[contentMain] }
         </main>
       </div>
+
+      <ModalSuccessfully />
     </Container>
   )
 }
