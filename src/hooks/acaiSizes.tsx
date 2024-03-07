@@ -2,18 +2,20 @@ import { ReactElement, createContext, useContext, useState } from "react";
 import { api } from "../services/api";
 
 interface typeAcaiSizesContext {
+  allSizesDatabase: IObjectSize[],
   createSizes: (newSizes: IObjectSize[]) => void;
   findAllSizes: (signal: AbortSignal) => void;
-  allSizesDatabase: {}[]
+  deleteSizes: (sizes: IObjectSize[]) => void;
 }
 
 const initialValue = {
+  allSizesDatabase: [{ size: "", price: "" }],
   createSizes: () => {},
   findAllSizes: () => {},
-  allSizesDatabase: [{ size: "", price: "" }]
+  deleteSizes: () => {}
 }
 
-interface IObjectSize {
+export interface IObjectSize {
   size: string,
   price: string
 }
@@ -46,8 +48,21 @@ function AcaiSizesProvider(props: { children: ReactElement }) {
     }
   }
 
+  async function deleteSizes(sizes: IObjectSize[]): Promise<void> {
+    try {
+      if(sizes.length == 0) {
+        return;
+      }
+
+      await api.post("/acai_sizes/delete", { sizes });
+
+    } catch(error) {
+      console.error(`erro ao apagar tamanhos no banco de dados: ${ error }`);
+    }
+  }
+
   return (
-    <AcaiSizesContext.Provider value={{ createSizes, findAllSizes, allSizesDatabase }}>
+    <AcaiSizesContext.Provider value={{ allSizesDatabase, createSizes, findAllSizes, deleteSizes }}>
       { props.children }
     </AcaiSizesContext.Provider>
   )

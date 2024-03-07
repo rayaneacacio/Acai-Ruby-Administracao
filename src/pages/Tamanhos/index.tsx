@@ -3,14 +3,15 @@ import { Container } from "./style";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import { ButtonSave } from "../../components/ButtonSave";
-import { useAcaiSizes } from "../../hooks/acaiSizes";
+import { IObjectSize, useAcaiSizes } from "../../hooks/acaiSizes";
 
 export function Tamanhos(): ReactElement {
-  const { createSizes, findAllSizes } = useAcaiSizes();
+  const { createSizes, findAllSizes, allSizesDatabase, deleteSizes } = useAcaiSizes();
 
   const [ size, setSize ] = useState<string>("");
   const [ price, setPrice ] = useState<string>("");
-  const [ sizesList, setSizesList ] = useState<{ size: string, price: string }[]>([]);
+  const [ sizesList, setSizesList ] = useState<IObjectSize[]>([]);
+  const [ filteredSizesDatabase, setFilteredSizesDatabase ] = useState<IObjectSize[]>(allSizesDatabase);
 
   function handleAddSize(): void {
     if(size == "" || price == "") {
@@ -26,13 +27,22 @@ export function Tamanhos(): ReactElement {
     });
   }
 
-  function handleRemoveSize(size: string): void {
-    const newSizesList = sizesList.filter(index => index.size != size);
+  function handleRemoveSize(itemSize: string): void {
+    const newSizesList = sizesList.filter(index => index.size != itemSize);
     setSizesList(newSizesList);
   }
 
+  function handleRemoveSizeInDatabase(itemSize: string): void {
+    const newSizesList = filteredSizesDatabase.filter(index => index.size != itemSize);
+    setFilteredSizesDatabase(newSizesList);
+  }
+
   function handleSaveInDatabase(): void {
+    const sizesDeleted = allSizesDatabase.filter(sizeDatabase => !filteredSizesDatabase.includes(sizeDatabase));
+
+    deleteSizes(sizesDeleted);
     createSizes(sizesList);
+    (document.querySelector(".modalCreatedSuccessfully")! as HTMLDialogElement).style.display = "block";
   }
 
   useEffect(() => {
@@ -44,6 +54,10 @@ export function Tamanhos(): ReactElement {
     }
 
   }, []);
+
+  useEffect(() => {
+    setFilteredSizesDatabase(allSizesDatabase);
+  }, [ allSizesDatabase ]);
 
   return (
     <Container>
@@ -57,11 +71,21 @@ export function Tamanhos(): ReactElement {
         </div>
 
         {
-          sizesList?.map((item: { size: string, price: string }, index: number) => (
+          sizesList?.map((item: IObjectSize, index: number) => (
             <div key={ index }>
               <Input name="Tamanho" value={ item.size } />
               <Input name="Preço" value={ item.price } />
               <Button className="buttonDelete" onClick={() => handleRemoveSize(item.size) } />
+            </div>
+          ))
+        }
+
+        {
+          filteredSizesDatabase?.map((item: IObjectSize, index: number) => (
+            <div key={ index }>
+              <Input name="Tamanho" value={ item.size } />
+              <Input name="Preço" value={ item.price } />
+              <Button className="buttonDelete" onClick={() => handleRemoveSizeInDatabase(item.size) } />
             </div>
           ))
         }
