@@ -74,11 +74,11 @@ export function Adicionar(): ReactElement {
     }
   }
 
-  function handleCreateAcaiComponents(): void {
-    createAcaiComponents(cremesList, "cremes");
-    createAcaiComponents(complementosList, "complementos");
-    createAcaiComponents(coberturaList, "coberturas");
-    createAcaiComponents(extrasList, "extras");
+  async function handleCreateAcaiComponents(): Promise<void> {
+    await createAcaiComponents(cremesList, "cremes");
+    await createAcaiComponents(complementosList, "complementos");
+    await createAcaiComponents(coberturaList, "coberturas");
+    await createAcaiComponents(extrasList, "extras");
 
     if(cremesList.length!=0 || complementosList.length!=0 ||coberturaList.length!=0 || extrasList.length!=0) {
       (document.querySelector(".modalCreatedSuccessfully")! as HTMLDialogElement).style.display = "block";

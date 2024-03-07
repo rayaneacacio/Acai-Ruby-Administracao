@@ -21,6 +21,7 @@ export function Disponíveis(): ReactElement {
   const { findAllAcaiComponents, allComponentesDatabase, deleteComponents } = useAcai();
   const [ filteredComponents, setFilteredComponents ] = useState<IObjectComponents>(allComponentesDatabase);
   const [ componentsDeleted, setComponentsDeleted ] = useState<IComponent[]>([]);
+  const [ isLoading, setIsLoading ] = useState<boolean>(true);
 
   function handleRemoveComponent(
     acaiComponentName: string, 
@@ -49,7 +50,10 @@ export function Disponíveis(): ReactElement {
 
   useEffect(() => {
     const controller = new AbortController();
-    findAllAcaiComponents(controller.signal);
+
+    (async() => {
+      await findAllAcaiComponents(controller.signal);
+    })();
 
     return () => {
       controller.abort();
@@ -59,6 +63,9 @@ export function Disponíveis(): ReactElement {
 
   useEffect(() => {
     setFilteredComponents(allComponentesDatabase);
+    if(Object.values(allComponentesDatabase).every(index => index.length != 0)) {
+      setIsLoading(false);
+    }
 
   }, [ allComponentesDatabase ]);
 
@@ -76,20 +83,29 @@ export function Disponíveis(): ReactElement {
         }
       </div>
 
-      <div>
-        {
-          filteredComponents &&
-          Object.values(filteredComponents).map((category: IComponent[], index: number) => (
-            <div className="divComponentes" key={ index }>
-              {
-                category.map((acaiComponent: IComponent, index: number) => (
-                  <ComponentDraft  key={ index } name={ acaiComponent.name } onClick={() => handleRemoveComponent(acaiComponent.name, acaiComponent.type) } />
-                ))
-              }
-            </div>
-          ))
-        }
-      </div>
+      {
+        isLoading ?
+        <div className="divIsLoading">
+          <div className="spin">
+            <div></div>
+          </div>
+        </div>
+        :
+        <div>
+          {
+            filteredComponents &&
+            Object.values(filteredComponents).map((category: IComponent[], index: number) => (
+              <div className="divComponentes" key={ index }>
+                {
+                  category.map((acaiComponent: IComponent, index: number) => (
+                    <ComponentDraft  key={ index } name={ acaiComponent.name } onClick={() => handleRemoveComponent(acaiComponent.name, acaiComponent.type) } />
+                  ))
+                }
+              </div>
+            ))
+          }
+        </div>
+      }
     </Container>
   )
 }

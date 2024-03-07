@@ -3,16 +3,16 @@ import { api } from "../services/api";
 
 interface AcaiContextType {
   allComponentesDatabase: IAllComponents;
-  createAcaiComponents: (newComponents: string[], category: string) => void;
-  findAllAcaiComponents: (signal: AbortSignal) => void;
-  deleteComponents: (components: { id: number, name: string, type: string }[]) => void;
+  createAcaiComponents: (newComponents: string[], category: string) => Promise<void>;
+  findAllAcaiComponents: (signal: AbortSignal) => Promise<void>;
+  deleteComponents: (components: { id: number, name: string, type: string }[]) => Promise<void>;
 }
 
 const initialValue: AcaiContextType = {
   allComponentesDatabase: { cremes: [], complementos: [], coberturas: [], extras: [] },
-  createAcaiComponents: () => {},
-  findAllAcaiComponents: () => {},
-  deleteComponents: () => {}
+  createAcaiComponents: async() => {},
+  findAllAcaiComponents: async() => {},
+  deleteComponents: async() => {}
 }
 
 interface IAllComponents {

@@ -86,6 +86,34 @@ export default createGlobalStyle`
     animation: none;
   }
 
+  .divIsLoading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    inset: 0;
+  }
+
+  .spin {
+    background: linear-gradient(to right, ${({ theme }) => theme.COLORS.WHITE}, rgb(15 32 40 / 0.44), ${({ theme }) => theme.COLORS.GRAY} );
+    background-size: 400% 400%;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    animation: spinLoading 2s ease infinite;
+    cursor: progress;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > div {
+      background-color: ${({ theme }) => theme.COLORS.WHITE_200};
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+    }
+  }
+
   @keyframes animateToRight {
     from {
       transform: translateX(-5rem);
@@ -101,6 +129,16 @@ export default createGlobalStyle`
     }
     to {
       opacity: 1;
+    }
+  }
+
+  @keyframes spinLoading {
+    to { 
+      transform: rotate(0deg); 
+    }
+
+    from { 
+      transform: rotate(360deg); 
     }
   }
 `;

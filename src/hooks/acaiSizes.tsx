@@ -3,16 +3,16 @@ import { api } from "../services/api";
 
 interface typeAcaiSizesContext {
   allSizesDatabase: IObjectSize[],
-  createSizes: (newSizes: IObjectSize[]) => void;
-  findAllSizes: (signal: AbortSignal) => void;
-  deleteSizes: (sizes: IObjectSize[]) => void;
+  createSizes: (newSizes: IObjectSize[]) => Promise<void>;
+  findAllSizes: (signal: AbortSignal) => Promise<void>;
+  deleteSizes: (sizes: IObjectSize[]) => Promise<void>;
 }
 
 const initialValue = {
   allSizesDatabase: [{ size: "", price: "" }],
-  createSizes: () => {},
-  findAllSizes: () => {},
-  deleteSizes: () => {}
+  createSizes: async() => {},
+  findAllSizes: async() => {},
+  deleteSizes: async() => {}
 }
 
 export interface IObjectSize {

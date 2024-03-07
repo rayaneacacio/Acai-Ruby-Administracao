@@ -12,6 +12,7 @@ export function Tamanhos(): ReactElement {
   const [ price, setPrice ] = useState<string>("");
   const [ sizesList, setSizesList ] = useState<IObjectSize[]>([]);
   const [ filteredSizesDatabase, setFilteredSizesDatabase ] = useState<IObjectSize[]>(allSizesDatabase);
+  const [ isLoading, setIsLoading ] = useState<boolean>(true);
 
   function handleAddSize(): void {
     if(size == "" || price == "") {
@@ -37,11 +38,11 @@ export function Tamanhos(): ReactElement {
     setFilteredSizesDatabase(newSizesList);
   }
 
-  function handleSaveInDatabase(): void {
+  async function handleSaveInDatabase(): Promise<void> {
     const sizesDeleted = allSizesDatabase.filter(sizeDatabase => !filteredSizesDatabase.includes(sizeDatabase));
 
-    deleteSizes(sizesDeleted);
-    createSizes(sizesList);
+    await deleteSizes(sizesDeleted);
+    await createSizes(sizesList);
     (document.querySelector(".modalCreatedSuccessfully")! as HTMLDialogElement).style.display = "block";
   }
 
@@ -57,6 +58,11 @@ export function Tamanhos(): ReactElement {
 
   useEffect(() => {
     setFilteredSizesDatabase(allSizesDatabase);
+    
+    if(allSizesDatabase.length != 0) {
+      setIsLoading(false);
+    }
+
   }, [ allSizesDatabase ]);
 
   return (
@@ -81,6 +87,13 @@ export function Tamanhos(): ReactElement {
         }
 
         {
+          isLoading ?
+          <div className="divIsLoading">
+            <div className="spin">
+              <div></div>
+            </div>
+          </div>
+          :
           filteredSizesDatabase?.map((item: IObjectSize, index: number) => (
             <div key={ index }>
               <Input name="Tamanho" value={ item.size } />
