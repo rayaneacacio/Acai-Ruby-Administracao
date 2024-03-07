@@ -2,15 +2,17 @@ import { ReactElement, createContext, useContext, useState } from "react";
 import { api } from "../services/api";
 
 interface AcaiContextType {
+  allComponentesDatabase: IAllComponents;
   createAcaiComponents: (newComponents: string[], category: string) => void;
   findAllAcaiComponents: (signal: AbortSignal) => void;
-  allComponentesDatabase: IAllComponents;
+  deleteComponents: (components: { id: number, name: string, type: string }[]) => void;
 }
 
 const initialValue: AcaiContextType = {
+  allComponentesDatabase: { cremes: [], complementos: [], coberturas: [], extras: [] },
   createAcaiComponents: () => {},
   findAllAcaiComponents: () => {},
-  allComponentesDatabase: { cremes: [], complementos: [], coberturas: [], extras: [] },
+  deleteComponents: () => {}
 }
 
 interface IAllComponents {
@@ -62,7 +64,22 @@ function AcaiProviders(props: { children: ReactElement }) {
     }
   }
 
-  return <AcaiContext.Provider value={{ createAcaiComponents, findAllAcaiComponents, allComponentesDatabase }}>
+  async function deleteComponents(components: { id: number, name: string, type: string }[]): Promise<void> {
+    try {
+      if(components.length == 0) {
+        return;
+      }
+
+      const componentsId = components.map(index => { return index.id });
+      
+      await api.post("/acai_components/delete", { componentsId });
+
+    } catch(error) { 
+      console.error(`erro ao criar componente: ${error}`);
+    }
+  }
+
+  return <AcaiContext.Provider value={{ allComponentesDatabase, createAcaiComponents, findAllAcaiComponents, deleteComponents }}>
     { props.children }
   </AcaiContext.Provider>
 }
