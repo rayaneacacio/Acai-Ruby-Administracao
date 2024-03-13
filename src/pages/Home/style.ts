@@ -12,12 +12,14 @@ export const Container = styled.div`
   }
 
   main {
-    width: 100%;
+    max-width: 100%;
     padding: 4rem;
     padding-right: 4rem;
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 
     &::-webkit-scrollbar {
+      display: none;
       background: transparent;
     }
 
@@ -62,6 +64,7 @@ export const Container = styled.div`
       }
 
       &::-webkit-scrollbar {
+        display: block;
         width: 8px;
       }
 
