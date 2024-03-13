@@ -12,11 +12,10 @@ export const Container = styled.div`
   }
 
   main {
-    max-width: 100%;
-    padding: 4rem;
-    padding-right: 4rem;
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
     overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
 
     &::-webkit-scrollbar {
       display: none;
@@ -51,6 +50,7 @@ export const Container = styled.div`
 
     main {
       width: calc(100% - 21rem);
+      padding: 4rem;
       margin-left: 22rem;
 
       h1 {
@@ -150,7 +150,7 @@ export const Nav = styled.nav`
     height: 100%;
    
     &:hover {
-      filter: brightness(0);
+      filter: none;
     }
   }
 
