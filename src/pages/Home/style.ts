@@ -145,6 +145,10 @@ export const Nav = styled.nav`
     background-color: rgba(0,0,0,0.46495094619879207);
     width: 100%;
     height: 100%;
+   
+    &:hover {
+      filter: brightness(0);
+    }
   }
 
   @media(min-width: 950px) {

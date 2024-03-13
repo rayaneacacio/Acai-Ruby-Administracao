@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.header`
-  background: ${({ theme }) => theme.COLORS.WHITE};
+  background: ${({ theme }) => theme.COLORS.PURPLE};
+  color: ${({ theme }) => theme.COLORS.WHITE};
   width: 100%;
   height: 6rem;
   padding: 1rem 2rem;
@@ -43,6 +44,10 @@ export const Container = styled.header`
 
   svg {
     width: 2.5rem;
+
+    path {
+      fill: ${({ theme }) => theme.COLORS.WHITE};
+    }
   }
 
   > button {
@@ -50,6 +55,8 @@ export const Container = styled.header`
   }
 
   @media(min-width: 950px) {
+    background: ${({ theme }) => theme.COLORS.WHITE};
+    color: ${({ theme }) => theme.COLORS.PURPLE};
     height: 7rem;
     padding: 1rem 5rem;
     justify-content: space-between;
