@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { Container, Nav } from "./style";
 import { Header } from "../../components/Header";
 import { Adicionar } from "../Adicionar";
@@ -25,12 +25,26 @@ export function Home(): ReactElement {
     setContentMain(button.innerText);
   }
 
+  function handleCloseMenuMobile(): void {
+    (document.querySelector("nav")! as HTMLElement).style.display = "none";
+  }
+
+  useEffect(() => {
+    const firstButtonNav = (Array.from(document.querySelectorAll("nav button")) as HTMLButtonElement[])[0];
+
+    if(firstButtonNav) {
+      handleContentMain(firstButtonNav);
+    }
+
+  }, []);
+
   return (
     <Container>
       <Header />
 
       <div>
         <Nav>
+          <div className="menu">
           <div>
             <div> <SvgFoodMenu /> </div>
             <h2>Pedidos</h2>
@@ -44,7 +58,10 @@ export function Home(): ReactElement {
           <button onClick={(event) => handleContentMain(event.currentTarget) }>Disponíveis</button>
           <button onClick={(event) => handleContentMain(event.currentTarget) }>Adicionar</button>
           <button onClick={(event) => handleContentMain(event.currentTarget) }>Tamanhos</button>
+          
+          </div>
 
+          <button className="buttonCloseMenuMobile" onClick={ handleCloseMenuMobile }></button>
         </Nav>
 
         <main>

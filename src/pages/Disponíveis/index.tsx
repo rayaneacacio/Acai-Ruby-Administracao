@@ -75,37 +75,106 @@ export function Disponíveis(): ReactElement {
 
       <div>
         <ButtonSave onClick={ handleSaveDatabase } />
-        {
-          allComponentesDatabase &&
-          Object.keys(allComponentesDatabase).map((category: string, index: number) => (
-            <h2 key={ index }>{ category }</h2>
-          ))
-        }
-      </div>
-
-      {
-        isLoading ?
-        <div className="divIsLoading">
-          <div className="spin">
-            <div></div>
-          </div>
-        </div>
-        :
         <div>
+          <h2>cremes</h2>
           {
+            isLoading ?
+            <div className="divIsLoading">
+              <div className="spin">
+                <div></div>
+              </div>
+            </div>
+            :
             filteredComponents &&
-            Object.values(filteredComponents).map((category: IComponent[], index: number) => (
-              <div className="divComponentes" key={ index }>
-                {
-                  category.map((acaiComponent: IComponent, index: number) => (
-                    <ComponentDraft  key={ index } name={ acaiComponent.name } onClick={() => handleRemoveComponent(acaiComponent.name, acaiComponent.type) } />
-                  ))
-                }
+            Object.values(filteredComponents).map((category: IComponent[]) => (
+              <div className="divComponentes">
+              {
+                category.map((acaiComponent: IComponent, index: number) => (
+                  acaiComponent.type == "cremes" &&
+                    <ComponentDraft key={ index } name={ acaiComponent.name } 
+                    onClick={() => handleRemoveComponent (acaiComponent.name, acaiComponent.type) } />
+                ))
+              }
               </div>
             ))
           }
         </div>
-      }
+
+        <div>
+          <h2>complementos</h2>
+          {
+            isLoading ?
+            <div className="divIsLoading">
+              <div className="spin">
+                <div></div>
+              </div>
+            </div>
+            :
+            filteredComponents &&
+            Object.values(filteredComponents).map((category: IComponent[]) => (
+              <div className="divComponentes">
+              {
+                category.map((acaiComponent: IComponent, index: number) => (
+                  acaiComponent.type == "complementos" &&
+                    <ComponentDraft key={ index } name={ acaiComponent.name } 
+                    onClick={() => handleRemoveComponent (acaiComponent.name, acaiComponent.type) } />
+                ))
+              }
+              </div>
+            ))
+          }
+        </div>
+
+        <div>
+          <h2>coberturas</h2>
+          {
+            isLoading ?
+            <div className="divIsLoading">
+              <div className="spin">
+                <div></div>
+              </div>
+            </div>
+            :
+            filteredComponents &&
+            Object.values(filteredComponents).map((category: IComponent[]) => (
+              <div className="divComponentes">
+              {
+                category.map((acaiComponent: IComponent, index: number) => (
+                  acaiComponent.type == "coberturas" &&
+                    <ComponentDraft key={ index } name={ acaiComponent.name } 
+                    onClick={() => handleRemoveComponent (acaiComponent.name, acaiComponent.type) } />
+                ))
+              }
+              </div>
+            ))
+          }
+        </div>
+
+        <div>
+          <h2>extras</h2>
+          {
+            isLoading ?
+            <div className="divIsLoading">
+              <div className="spin">
+                <div></div>
+              </div>
+            </div>
+            :
+            filteredComponents &&
+            Object.values(filteredComponents).map((category: IComponent[]) => (
+              <div className="divComponentes">
+              {
+                category.map((acaiComponent: IComponent, index: number) => (
+                  acaiComponent.type == "extras" &&
+                    <ComponentDraft key={ index } name={ acaiComponent.name } 
+                    onClick={() => handleRemoveComponent (acaiComponent.name, acaiComponent.type) } />
+                ))
+              }
+              </div>
+            ))
+          }
+        </div>
+      </div>
     </Container>
   )
 }

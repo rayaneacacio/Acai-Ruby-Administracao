@@ -12,11 +12,6 @@ export default createGlobalStyle`
     font-size: 62.5%;
   }
 
-  #root {
-    width: 100vw;
-    height: 100vh;
-  }
-
   body {
     background: ${({ theme }) => theme.COLORS.WHITE_200};
     color: ${({ theme }) => theme.COLORS.PURPLE};
@@ -92,6 +87,7 @@ export default createGlobalStyle`
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: progress;
   }
 
   .spin {
@@ -101,7 +97,6 @@ export default createGlobalStyle`
     height: 5rem;
     border-radius: 50%;
     animation: spinLoading 2s ease infinite;
-    cursor: progress;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -129,6 +124,15 @@ export default createGlobalStyle`
     }
     to {
       opacity: 1;
+    }
+  }
+
+  @keyframes animateMenu {
+    from {
+      transform: translateX(-23rem);
+    }
+    to {
+      transform: translateX(0);
     }
   }
 

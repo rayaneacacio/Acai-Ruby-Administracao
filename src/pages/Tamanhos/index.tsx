@@ -67,41 +67,43 @@ export function Tamanhos(): ReactElement {
 
   return (
     <Container>
-        <h1>Atualizar Tamanhos</h1>
+      <h1>Atualizar Tamanhos</h1>
         
-        <div className="newSize">
-          <ButtonSave onClick={ handleSaveInDatabase }/>
-          <Input name="Tamanho" placeholder="ex: 500ml" onChange={(event) => setSize(event.target.value)}/>
-          <Input name="Preço" placeholder="ex: R$ 20" onChange={(event) => setPrice(event.target.value)}/>
-          <Button onClick={ handleAddSize } />
-        </div>
+      <div className="newSize">
+        <ButtonSave className="buttonSaveDesktop" onClick={ handleSaveInDatabase }/>
+        <Input name="Tamanho" placeholder="ex: 500ml" onChange={(event) => setSize(event.target.value)}/>
+        <Input name="Preço" placeholder="ex: R$ 20" onChange={(event) => setPrice(event.target.value)}/>
+        <Button onClick={ handleAddSize } />
+      </div>
 
-        {
-          sizesList?.map((item: IObjectSize, index: number) => (
-            <div key={ index }>
-              <Input name="Tamanho" value={ item.size } />
-              <Input name="Preço" value={ item.price } />
-              <Button className="buttonDelete" onClick={() => handleRemoveSize(item.size) } />
-            </div>
-          ))
-        }
-
-        {
-          isLoading ?
-          <div className="divIsLoading">
-            <div className="spin">
-              <div></div>
-            </div>
+      {
+        sizesList?.map((item: IObjectSize, index: number) => (
+          <div key={ index }>
+            <Input name="Tamanho" value={ item.size } />
+            <Input name="Preço" value={ item.price } />
+            <Button className="buttonDelete" onClick={() => handleRemoveSize(item.size) } />
           </div>
-          :
-          filteredSizesDatabase?.map((item: IObjectSize, index: number) => (
-            <div key={ index }>
-              <Input name="Tamanho" value={ item.size } />
-              <Input name="Preço" value={ item.price } />
-              <Button className="buttonDelete" onClick={() => handleRemoveSizeInDatabase(item.size) } />
-            </div>
-          ))
-        }
+        ))
+      }
+
+      {
+        isLoading ?
+        <div className="divIsLoading">
+          <div className="spin">
+            <div></div>
+          </div>
+        </div>
+        :
+        filteredSizesDatabase?.map((item: IObjectSize, index: number) => (
+          <div key={ index }>
+            <Input name="Tamanho" value={ item.size } />
+            <Input name="Preço" value={ item.price } />
+            <Button className="buttonDelete" onClick={() => handleRemoveSizeInDatabase(item.size) } />
+          </div>
+        ))
+      }
+
+      <ButtonSave className="buttonSaveMobile" onClick={ handleSaveInDatabase }/>
     </Container>
   )
 }

@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  h2 {
+    font-size: 2rem;
+    padding-top: 2rem;
+  }
+
   .divComponentes {
     padding-right: 5px;
     margin-top: 1rem;
@@ -18,5 +23,12 @@ export const Container = styled.div`
 
   .divIsLoading {
     margin-top: 7rem;
+  }
+
+  @media(min-width: 950px) {
+    h2 {
+      font-size: 2.2rem;
+      padding-top: 0;
+    }
   }
 `;
