@@ -17,17 +17,7 @@ export default createGlobalStyle`
     color: ${({ theme }) => theme.COLORS.PURPLE};
     font-family: ${({ theme }) => theme.FONTS.MONTSERRAT};
     font-size: 1.8rem;
-    overflow-x: hidden;
-
-    &::-webkit-scrollbar {
-      background: transparent;
-      width: 8px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: ${({ theme }) => theme.COLORS.PURPLE_22};
-      border-radius: 5px;
-    }
+    overflow: hidden;
   }
 
   h1, h2 {

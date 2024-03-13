@@ -60,6 +60,15 @@ export const Container = styled.div`
         grid-template-columns: 1fr 1fr 1fr 1fr;
         gap: 0 3rem;
       }
+
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: ${({ theme }) => theme.COLORS.PURPLE_22};
+        border-radius: 5px;
+      }
     }
   }
 
