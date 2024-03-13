@@ -33,7 +33,7 @@ export const Container = styled.div`
     > div > div {
       display: flex;
       flex-direction: column;
-      padding-bottom: 15rem;
+      padding-bottom: 20rem;
       position: relative;
 
       > *:not(.buttonSave, dialog) {

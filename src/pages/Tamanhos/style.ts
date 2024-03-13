@@ -12,8 +12,8 @@ export const Container = styled.div`
     margin-bottom: 2rem;
   }
 
-  input {
-    width: 13rem;
+  .newSize > button:last-of-type {
+    padding: 1rem;
   }
 
   .buttonSaveDesktop {
@@ -22,7 +22,7 @@ export const Container = styled.div`
 
   .buttonSaveMobile {
     position: static;
-    margin: 5rem 0;
+    margin: 5rem 0 10rem;
   }
 
   .buttonDelete {
@@ -46,10 +46,6 @@ export const Container = styled.div`
 
     .buttonSaveMobile {
       display: none;
-    }
-
-    input {
-      width: 100%;
     }
   }
 `;
