@@ -55,10 +55,9 @@ export function Home(): ReactElement {
             <h2>Cardápio</h2>
           </div>
       
-          <button onClick={(event) => handleContentMain(event.currentTarget) }>Disponíveis</button>
-          <button onClick={(event) => handleContentMain(event.currentTarget) }>Adicionar</button>
-          <button onClick={(event) => handleContentMain(event.currentTarget) }>Tamanhos</button>
-          
+            <button onClick={(event) => handleContentMain(event.currentTarget) }>Disponíveis</button>
+            <button onClick={(event) => handleContentMain(event.currentTarget) }>Adicionar</button>
+            <button onClick={(event) => handleContentMain(event.currentTarget) }>Tamanhos</button>
           </div>
 
           <button className="buttonCloseMenuMobile" onClick={ handleCloseMenuMobile }></button>

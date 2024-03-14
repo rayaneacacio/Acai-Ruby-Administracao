@@ -10,10 +10,10 @@ export function AcaiRoutes() {
     <BrowserRouter>
       <Routes>
         {
-          adm ?
-          <Route path="/" element={ <Home /> } />
-          :
+          !adm ?
           <Route path="/" element={ <Login /> } />
+          :
+          <Route path="/" element={ <Home /> } />
         }
       </Routes>
     </BrowserRouter>

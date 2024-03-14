@@ -11,7 +11,7 @@ export function Login(): ReactElement {
 
   function handleLogin(): void {
     if(email == "ruby@gmail.com" && password == "ruby1234") {
-      login(email);
+      login();
     } else {
       alert("email ou senha incorreta");
     }

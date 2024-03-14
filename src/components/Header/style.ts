@@ -50,8 +50,12 @@ export const Container = styled.header`
     }
   }
 
-  > button {
+  > button svg {
     display: none;
+  }
+
+  > button {
+    color: ${({ theme }) => theme.COLORS.WHITE};
   }
 
   @media(min-width: 950px) {
@@ -82,8 +86,13 @@ export const Container = styled.header`
     }
 
     > button {
+      color: ${({ theme }) => theme.COLORS.PURPLE};
       display: flex;
       justify-content: center;
+
+      svg {
+        display: block;
+      }
     }
   }
 `;

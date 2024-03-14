@@ -1,13 +1,13 @@
 import { ReactElement, createContext, useContext, useEffect, useState } from "react";
 
 interface typeAdmContext {
-  adm: string | undefined;
-  login: (email: string) => void;
+  adm: boolean;
+  login: () => void;
   logout: () => void;
 }
 
 const initialValue = {
-  adm: undefined,
+  adm: false,
   login: () => {},
   logout: () => {}
 }
@@ -15,23 +15,23 @@ const initialValue = {
 export const AdmContext = createContext<typeAdmContext>(initialValue);
 
 function AdmProvider(props: { children: ReactElement }) {
-  const [ adm, setAdm ] = useState<string | undefined>(undefined);
+  const [ adm, setAdm ] = useState<boolean>(false);
 
-  function login(email: string): void {
-    setAdm(email);
-    localStorage.setItem("acairuby@adm", JSON.stringify(email));
+  function login(): void {
+    setAdm(true);
+    localStorage.setItem("acairuby@adm", JSON.stringify(true));
   }
 
   function logout(): void {
-    setAdm(undefined);
+    setAdm(false);
     localStorage.removeItem("acairuby@adm");
   }
 
   useEffect(() => {
-    const emailAdm = localStorage.getItem("acairuby@adm");
-    if(emailAdm) {
-      setAdm(JSON.stringify(emailAdm));
-      localStorage.setItem("acairuby@adm", emailAdm);
+    const localStorageAdm = localStorage.getItem("acairuby@adm");
+    if(localStorageAdm) {
+      setAdm(true);
+      localStorage.setItem("acairuby@adm", localStorageAdm);
     }
 
   }, []);
