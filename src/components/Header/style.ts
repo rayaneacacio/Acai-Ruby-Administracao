@@ -67,6 +67,14 @@ export const Container = styled.header`
 
     .title {
       width: auto;
+
+      svg {
+        width: 3rem;
+
+        path {
+          fill: ${({ theme }) => theme.COLORS.PURPLE};
+        }
+      }
     }
 
     h1 {
@@ -76,17 +84,6 @@ export const Container = styled.header`
     > button {
       display: flex;
       justify-content: center;
-
-      svg:last-of-type {
-        transform: rotateX(0deg);
-        transition: 0.3s;
-      }
-
-      &:hover {
-        svg:last-of-type {
-          transform: rotateX(180deg);
-        }
-      }
     }
   }
 `;

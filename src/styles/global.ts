@@ -129,12 +129,11 @@ export default createGlobalStyle`
   }
 
   @keyframes spinLoading {
-    to { 
-      transform: rotate(0deg); 
-    }
-
     from { 
       transform: rotate(360deg); 
+    }
+    to { 
+      transform: rotate(0deg); 
     }
   }
 `;

@@ -2,10 +2,12 @@ import { ReactElement } from "react";
 import { Container } from "./style";
 import { SvgAdmin } from "../../assets/svgs/adm";
 import { SvgUserAdmin } from "../../assets/svgs/user_adm";
-import { SvgBxsUpArrow } from "../../assets/svgs/bxsup_arrow";
 import { SvgFoodMenu } from "../../assets/svgs/food-menu";
+import { useAdm } from "../../hooks/adm";
 
 export function Header(): ReactElement {
+  const { logout } = useAdm();
+
   function handleOpenNav(): void {
     const nav = document.querySelector("nav")! as HTMLElement;
 
@@ -14,6 +16,10 @@ export function Header(): ReactElement {
     } else {
       nav.style.display = "none";
     }
+  }
+
+  function handleLogout(): void {
+    logout();
   }
 
   return (
@@ -26,10 +32,9 @@ export function Header(): ReactElement {
         </div>
       </div>
 
-      <button>
+      <button onClick={ handleLogout }>
         <SvgUserAdmin />
-        <p>nane</p>
-        <SvgBxsUpArrow />
+        <p>sair</p>
       </button>
     </Container>
   )

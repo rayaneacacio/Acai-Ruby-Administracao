@@ -5,8 +5,8 @@ import theme from './styles/theme';
 import GlobalStyles from './styles/global';
 import { AcaiProviders } from './hooks/acai';
 import { AcaiSizesProvider } from './hooks/acaiSizes';
-
-import { Home } from './pages/Home';
+import { AcaiRoutes } from './routes';
+import { AdmProvider } from './hooks/adm';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -14,7 +14,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <GlobalStyles />
       <AcaiProviders>
         <AcaiSizesProvider>
-          <Home />
+          <AdmProvider>
+            <AcaiRoutes />
+          </AdmProvider>
         </AcaiSizesProvider>
       </AcaiProviders>
     </ThemeProvider>

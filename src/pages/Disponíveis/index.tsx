@@ -86,8 +86,8 @@ export function Disponíveis(): ReactElement {
             </div>
             :
             filteredComponents &&
-            Object.values(filteredComponents).map((category: IComponent[]) => (
-              <div className="divComponentes">
+            Object.values(filteredComponents).map((category: IComponent[], index: number) => (
+              <div key={ index } className="divComponentes">
               {
                 category.map((acaiComponent: IComponent, index: number) => (
                   acaiComponent.type == "cremes" &&
@@ -111,8 +111,8 @@ export function Disponíveis(): ReactElement {
             </div>
             :
             filteredComponents &&
-            Object.values(filteredComponents).map((category: IComponent[]) => (
-              <div className="divComponentes">
+            Object.values(filteredComponents).map((category: IComponent[], index: number) => (
+              <div key={ index } className="divComponentes">
               {
                 category.map((acaiComponent: IComponent, index: number) => (
                   acaiComponent.type == "complementos" &&
@@ -136,8 +136,8 @@ export function Disponíveis(): ReactElement {
             </div>
             :
             filteredComponents &&
-            Object.values(filteredComponents).map((category: IComponent[]) => (
-              <div className="divComponentes">
+            Object.values(filteredComponents).map((category: IComponent[], index: number) => (
+              <div key={ index } className="divComponentes">
               {
                 category.map((acaiComponent: IComponent, index: number) => (
                   acaiComponent.type == "coberturas" &&
@@ -161,8 +161,8 @@ export function Disponíveis(): ReactElement {
             </div>
             :
             filteredComponents &&
-            Object.values(filteredComponents).map((category: IComponent[]) => (
-              <div className="divComponentes">
+            Object.values(filteredComponents).map((category: IComponent[], index: number) => (
+              <div key={ index } className="divComponentes">
               {
                 category.map((acaiComponent: IComponent, index: number) => (
                   acaiComponent.type == "extras" &&
