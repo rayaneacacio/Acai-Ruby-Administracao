@@ -17,6 +17,7 @@ export default createGlobalStyle`
     color: ${({ theme }) => theme.COLORS.PURPLE};
     font-family: ${({ theme }) => theme.FONTS.MONTSERRAT};
     font-size: 1.8rem;
+    height: 100vh;
     overflow: hidden;
   }
 
@@ -38,6 +39,7 @@ export default createGlobalStyle`
     cursor: pointer;
     transition: 0.3s;
     outline: ${({ theme }) => theme.COLORS.PURPLE};
+    -webkit-tap-highlight-color: transparent;
   }
 
   button:hover {
