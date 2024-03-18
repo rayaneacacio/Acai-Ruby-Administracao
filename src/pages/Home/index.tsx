@@ -10,8 +10,8 @@ import { ModalSuccessfully } from "../../components/ModalSuccessfully";
 export function Home(): ReactElement {
   const [ contentMain, setContentMain ] = useState<string>("Disponíveis");
   const contentElement: { [key: string]: ReactElement } = {
-    "Adicionar": <Adicionar />,
     "Disponíveis": <Disponíveis />,
+    "Adicionar": <Adicionar />,
     "Tamanhos": <Tamanhos />
   }
 
@@ -45,15 +45,15 @@ export function Home(): ReactElement {
       <div>
         <Nav>
           <div className="menu">
-          <div>
-            <div> <SvgFoodMenu /> </div>
-            <h2>Pedidos</h2>
-          </div>
+            <div>
+              <div> <SvgFoodMenu /> </div>
+              <h2>Pedidos</h2>
+            </div>
 
-          <div>
-            <div> <SvgFoodMenu /> </div>
-            <h2>Cardápio</h2>
-          </div>
+            <div>
+              <div> <SvgFoodMenu /> </div>
+              <h2>Cardápio</h2>
+            </div>
       
             <button onClick={(event) => handleContentMain(event.currentTarget) }>Disponíveis</button>
             <button onClick={(event) => handleContentMain(event.currentTarget) }>Adicionar</button>

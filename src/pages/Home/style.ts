@@ -100,6 +100,7 @@ export const Nav = styled.nav`
     color:  ${({ theme }) => theme.COLORS.WHITE};
     width: 23rem;
     height: 100%;
+    padding-top: 3rem;
     border-radius: 0;
     margin: 0;
     display: flex;
@@ -114,7 +115,6 @@ export const Nav = styled.nav`
       justify-content: center;
       gap: 1rem;
       padding: 1rem 2rem 1rem 1rem;
-      margin: 3rem 0 0;
 
       > div {
         background-color:  ${({ theme }) => theme.COLORS.WHITE};
