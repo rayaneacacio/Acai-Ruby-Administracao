@@ -47,16 +47,13 @@ function AcaiProviders(props: { children: ReactElement }) {
 
   async function findAllAcaiComponents(signal: AbortSignal): Promise<void> {
     try {
-      const responseGetCremes = await api.get("/acai_components/index?type=cremes", { signal });
-      const responseGetComplementos = await api.get("/acai_components/index?type=complementos", { signal });
-      const responseGetCoberturas = await api.get("/acai_components/index?type=coberturas", { signal });
-      const responseGetExtras = await api.get("/acai_components/index?type=extras", { signal });
+      const response = await api.get("/acai_components/index", { signal });
 
       setAllComponentesDatabase({
-        cremes: responseGetCremes.data,
-        complementos: responseGetComplementos.data,
-        coberturas: responseGetCoberturas.data,
-        extras: responseGetExtras.data
+        cremes: response.data.cremes,
+        complementos: response.data.complementos,
+        coberturas: response.data.coberturas,
+        extras: response.data.extras
       });
 
     } catch(error) {
